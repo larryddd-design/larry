@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>my web</title>
+    <link rel="stylesheet" href="new.css">
+</head>
+<body>
+
+    <video autoplay loop muted playsinline>
+    <source src="media/green veectacy.mp4" type="video/webm">
+  </video>
+
+   <audio autoplay loop>
+       <source src="music.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag.
+  </audio>
+
+
+      <header>
+                <div class="logo">
+                    <img src="" alt="">
+
+                </div>
+
+                <nav id="log">
+                    <ul>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Services</a></li>
+                    </ul>
+                </nav>
+      </header> 
+
+         
+
+      <main>
+                <section>
+                        <div class="container">
+                                <!-- <h1>Random Joke Generator</h1> -->
+                                <button id="clicks">Generate Joke</button>
+                            
+                                <p id="setup"></p>
+                                <p id="punchline"></p>
+                            
+                                <button id="save">save jokes</button> 
+                                <button id="next">Next</button>
+                            
+
+                        </div> <br> <br>
+
+                    <div class="box">
+                            <h2>Saved Jokes</h2>
+                            <div id="saved-jokes"></div>
+                    </div>
+                 </section>
+
+                    <div id="wavy-bg">
+                            <div class="wave"></div>
+                            <div class="wave"></div>
+                            <div class="wave"></div>
+                    </div>
+
+                    <!-- 🎉 Lovely Interactive Section -->
+                    <section id="lovely-zone">
+                            <h2>🌸 Welcome to the Lovely Zone 🌸</h2>
+
+                            <!-- Floating Emojis -->
+                            <div class="floating-icons"></div>
+
+                            <!-- Fun Facts -->
+                            <div class="card tilt glass neon">
+                                <h3>✨ Fun Fact of the Moment</h3>
+                                <p id="fact">Loading...</p>
+                                <button>New Fact</button>
+                            </div>
+
+                            <!-- Compliments -->
+                            <div class="card tilt glass neon">
+                                <h3>💌 Your Daily Compliment</h3>
+                                <p id="compliment">Click the button for some love!</p>
+                                <button>Give me love!</button>
+                            </div>
+
+                            <!-- Mood Changer -->
+                            <div class="card tilt glass neon">
+                                <h3>🎨 Change the Mood</h3>
+                                <p>Click to switch background vibes!</p>
+                                <button>Change Mood</button>
+                            </div>
+
+                            <!-- Live Clock -->
+                            <div class="card tilt glass neon">
+                                <h3>⏰ Live Time</h3>
+                                <p id="clock">--:--:--</p>
+                            </div>
+
+                            <!-- Random Cat -->
+                            <div class="card tilt glass neon">
+                                <h3>🐱 Random Cat Generator</h3>
+                                <img id="cat" src="" alt="Cute cat" style="max-width:100%; border-radius:10px;">
+                                <button>Show Cat</button>
+                            </div>
+                    </section>
+
+                         <section id="music-zone">
+                                <h2>🎶 Music Mood Player</h2>
+                                <div class="card glass neon">
+                                    <p>Pick your vibe:</p>
+                                    <button onclick="playMusic('chill')">🌙 Chill</button>
+                                    <button onclick="playMusic('happy')">😄 Happy</button>
+                                    <button onclick="playMusic('study')">📚 Study</button>
+                                    <button onclick="stopMusic()">⏹ Stop</button>
+                                </div>
+                            </section>
+
+                    <section id="avatar-zone">
+                            <h2>🧑‍🎨 Avatar Generator</h2>
+                            <div class="card glass neon">
+                                <p id="avatarDisplay" style="font-size:3em;">😀</p>
+                                <button onclick="generateAvatar()">New Avatar</button>
+                            </div>
+                 </section>
+      </main>
+
+         <footer id="lovely-footer">
+           <div class="footer-content">
+            <h2>Made with 💖 for the Web</h2>
+            <p>Thanks for visiting my lovely site ✨</p>
+
+            <!-- 🌐 Social Links -->
+            <div class="social-links">
+            <a href="#" target="_blank">🐦 Twitter</a>
+            <a href="#" target="_blank">📸 Instagram</a>
+            <a href="#" target="_blank">💻 GitHub</a>
+            </div>
+
+            <!-- ⚡ Footer Buttons -->
+            <div class="footer-buttons">
+            <button onclick="scrollToTop()">⬆️ Back to Top</button>
+            <button onclick="toggleMusic()">🎶 Toggle Music</button>
+            <button onclick="toggleTheme()">🌗 Switch Theme</button>
+            </div>
+
+            <!-- 📅 Copyright -->
+            <p class="copyright">
+            © <span id="year"></span> MyLovelySite. All rights reserved 🌸
+            </p>
+        </div>
+
+        <div class="floating-decor"></div>
+     </footer>
+
+
+      <button onclick="document.getElementById('bg-music').play()"> Music</button>
+
+      <audio id="bg-music" loop>
+      <source src="media/Davido_-_Fia_Vistanaij.com.ng.mp3" type="audio/mpeg">
+      </audio>
+ 
+
+
+      <script src="new.js"></script>
+</body>
+</html>
