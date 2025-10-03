@@ -1,4 +1,111 @@
+  const track = document.querySelector('.carousel-track');
+    const slides = Array.from(track.children);
+    const nextBtn = document.querySelector('.next');
+    const prevBtn = document.querySelector('.prev');
+    const dotsNav = document.querySelector('.carousel-dots');
 
+    let slideWidth;
+    let currentIndex = 1; // start at the *real* first slide (after clone)
+    let intervalId;
+    let startX = 0, endX = 0;
+
+    // Create dots (excluding clones)
+    for (let i = 0; i < slides.length - 2; i++) {
+      const dot = document.createElement('button');
+      if (i === 0) dot.classList.add('active');
+      dotsNav.appendChild(dot);
+    }
+    const dots = Array.from(dotsNav.children);
+
+    function updateCarousel(animate = true) {
+      slideWidth = slides[0].getBoundingClientRect().width;
+      track.style.transition = animate ? "transform 0.5s ease-in-out" : "none";
+      track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+
+      // Update dots (sync with real slides)
+      dots.forEach(dot => dot.classList.remove('active'));
+      let dotIndex = currentIndex - 1;
+      if (dotIndex >= dots.length) dotIndex = 0;
+      if (dotIndex < 0) dotIndex = dots.length - 1;
+      dots[dotIndex].classList.add('active');
+    }
+
+    function nextSlide() {
+      currentIndex++;
+      updateCarousel();
+    }
+
+    function prevSlide() {
+      currentIndex--;
+      updateCarousel();
+    }
+
+    function goToSlide(index) {
+      currentIndex = index + 1; // offset by 1 due to clone
+      updateCarousel();
+    }
+
+    // Infinite loop fix after transition
+    track.addEventListener('transitionend', () => {
+      if (slides[currentIndex].alt === "Clone First") {
+        currentIndex = 1;
+        updateCarousel(false);
+      }
+      if (slides[currentIndex].alt === "Clone Last") {
+        currentIndex = slides.length - 2;
+        updateCarousel(false);
+      }
+    });
+
+    // Buttons
+    nextBtn.addEventListener('click', () => {
+      nextSlide();
+      restartAutoplay();
+    });
+    prevBtn.addEventListener('click', () => {
+      prevSlide();
+      restartAutoplay();
+    });
+
+    // Dots click
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        goToSlide(i);
+        restartAutoplay();
+      });
+    });
+
+    // Autoplay
+    function startAutoplay() {
+      intervalId = setInterval(nextSlide, 3000);
+    }
+    function stopAutoplay() {
+      clearInterval(intervalId);
+    }
+    function restartAutoplay() {
+      stopAutoplay();
+      startAutoplay();
+    }
+
+    // Pause on hover
+    document.querySelector('.carousel').addEventListener('mouseenter', stopAutoplay);
+    document.querySelector('.carousel').addEventListener('mouseleave', startAutoplay);
+
+    // Touch swipe
+    track.addEventListener('touchstart', e => startX = e.touches[0].clientX);
+    track.addEventListener('touchend', e => {
+      endX = e.changedTouches[0].clientX;
+      if (endX < startX - 50) nextSlide();
+      if (endX > startX + 50) prevSlide();
+      restartAutoplay();
+    });
+
+    // Resize support
+    window.addEventListener('resize', () => updateCarousel(false));
+
+    // Init
+    updateCarousel(false);
+    startAutoplay();
 
 clicks.addEventListener("click", () => {
 
